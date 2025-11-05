@@ -1,0 +1,101 @@
+{
+  "name": "react-component-generator",
+  "displayName": "React Component Generator",
+  "description": "Quickly create React components with TypeScript",
+  "version": "1.0.0",
+  "publisher": "cuongbuoi",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cuongbuoi/react-component-generator"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:react-component-generator.createComponent"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "React Component Generator",
+      "properties": {
+        "reactComponentGenerator.componentTemplate": {
+          "type": "string",
+          "default": "interface {ComponentName}Props {}\n\nexport const {ComponentName}: React.FC<{ComponentName}Props> = () => {\n  return (\n    <div>{ComponentName}</div>\n  );\n};\n",
+          "markdownDescription": "Template for the component file. Use `{ComponentName}` placeholder."
+        },
+        "reactComponentGenerator.indexTemplate": {
+          "type": "string",
+          "default": "export { {ComponentName} } from './{ComponentName}';\n",
+          "markdownDescription": "Template for index file. Use `{ComponentName}` placeholder."
+        },
+        "reactComponentGenerator.fileExtension": {
+          "type": "string",
+          "enum": [
+            "tsx",
+            "jsx",
+            "ts",
+            "js"
+          ],
+          "default": "tsx",
+          "markdownDescription": "File extension for the generated component file."
+        },
+        "reactComponentGenerator.createIndexFile": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Whether to create an index file alongside the component."
+        },
+        "reactComponentGenerator.componentTemplatePath": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Absolute or workspace-relative path to a file whose contents will be used as the component template. If provided, this takes precedence over `componentTemplate`."
+        },
+        "reactComponentGenerator.indexTemplatePath": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Absolute or workspace-relative path to a file whose contents will be used as the index template. If provided, this takes precedence over `indexTemplate`."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "react-component-generator.createComponent",
+        "title": "Create React Component"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "react-component-generator.createComponent",
+          "when": "explorerResourceIsFolder",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.0.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.75.0",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "@vscode/test-electron": "^2.2.0",
+    "eslint": "^8.28.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.1.0",
+    "prettier": "^3.6.2",
+    "typescript": "^4.9.3"
+  }
+}
