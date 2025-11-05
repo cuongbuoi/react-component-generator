@@ -1,37 +1,37 @@
 # React Component Generator
 
-Extension VSCode để tạo React component nhanh chóng với TypeScript và custom templates.
+A VS Code extension to quickly create React components with TypeScript and custom templates.
 
-## Tính năng
+## Features
 
-- ✅ Tạo React component với cấu trúc folder chuẩn
-- ✅ Custom template cho component và index file
-- ✅ Hỗ trợ tsx, jsx, ts, js
-- ✅ Tự động generate TypeScript interface
-- ✅ Validate tên component
+- ✅ Generate React components with a standard folder structure
+- ✅ Custom templates for the component and index file
+- ✅ Supports tsx, jsx, ts, js
+- ✅ Automatically generates a TypeScript interface
+- ✅ Validates component names
 
-## Cách sử dụng
+## How to Use
 
-1. Click chuột phải vào folder trong Explorer
-2. Chọn "Create React Component"
-3. Nhập tên component
-4. Hoàn tất!
+1. Right-click a folder in Explorer
+2. Select "Create React Component"
+3. Enter the component name
+4. Done!
 
-## Cấu hình (Settings)
+## Configuration (Settings)
 
-### Qua GUI
+### Via GUI
 
-1. Mở Settings (Ctrl+,)
-2. Tìm "React Component Generator"
-3. Chỉnh sửa các mục sau:
-   - reactComponentGenerator.componentTemplate: Template cho file component (dùng `{ComponentName}`)
-   - reactComponentGenerator.indexTemplate: Template cho `index.ts` (dùng `{ComponentName}`)
+1. Open Settings (Ctrl+,)
+2. Search for "React Component Generator"
+3. Adjust the following options:
+   - reactComponentGenerator.componentTemplate: Template for the component file (use `{ComponentName}`)
+   - reactComponentGenerator.indexTemplate: Template for `index.ts` (use `{ComponentName}`)
    - reactComponentGenerator.fileExtension: `tsx` | `ts` | `jsx` | `js`
-   - reactComponentGenerator.createIndexFile: Bật/tắt tạo `index.ts`
-   - reactComponentGenerator.componentTemplatePath: Đường dẫn file template component
-   - reactComponentGenerator.indexTemplatePath: Đường dẫn file template index
+   - reactComponentGenerator.createIndexFile: Toggle creating `index.ts`
+   - reactComponentGenerator.componentTemplatePath: File path to the component template
+   - reactComponentGenerator.indexTemplatePath: File path to the index template
 
-### Qua settings.json
+### Via settings.json
 
 ```json
 {
@@ -42,7 +42,7 @@ Extension VSCode để tạo React component nhanh chóng với TypeScript và c
 }
 ```
 
-Hoặc chỉ định template qua file (dễ chỉnh sửa, highlight, format):
+Or specify templates via files (easier to edit, highlight, and format):
 
 ```json
 {
@@ -51,14 +51,14 @@ Hoặc chỉ định template qua file (dễ chỉnh sửa, highlight, format):
 }
 ```
 
-### Ghi chú
+### Notes
 
-- Placeholder `{ComponentName}` sẽ được thay bằng tên component bạn nhập.
-- `fileExtension` quyết định phần mở rộng file component được tạo.
-- `createIndexFile = false` nếu không muốn tạo kèm `index.ts`.
-- Nếu chỉ định `*TemplatePath`, extension sẽ ưu tiên đọc nội dung file, sau đó mới đến chuỗi trong settings.
+- The `{ComponentName}` placeholder will be replaced with the component name you enter.
+- `fileExtension` determines the extension of the generated component file.
+- Set `createIndexFile = false` if you do not want to generate `index.ts`.
+- If `*TemplatePath` is provided, the extension will prefer reading content from the file; otherwise, it falls back to the string in settings.
 
-### Ví dụ Templates
+### Template Examples
 
 **Functional Component + props + memo:**
 
@@ -72,7 +72,7 @@ Hoặc chỉ định template qua file (dễ chỉnh sửa, highlight, format):
 "reactComponentGenerator.indexTemplate": "export { {ComponentName} } from './{ComponentName}';\n"
 ```
 
-**JS (không TypeScript):**
+**JS (no TypeScript):**
 
 ```json
 {
