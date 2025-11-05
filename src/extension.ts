@@ -77,7 +77,7 @@ export function activate(context: vscode.ExtensionContext) {
         const componentTemplate =
           componentTemplateFromFile ??
           config.get<string>('componentTemplate') ??
-          `import { FC } from 'react';\n\nexport const {ComponentName}: FC<{ComponentName}Props> = () => {\n  return (\n    <div>{ComponentName}</div>\n  );\n};\n`
+          `import { FC } from 'react';\n\ninterface {ComponentName}Props {}\n\nexport const {ComponentName}: FC<{ComponentName}Props> = () => {\n  return (\n    <div>{ComponentName}</div>\n  );\n};\n`
         const indexTemplate =
           indexTemplateFromFile ??
           config.get<string>('indexTemplate') ??

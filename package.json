@@ -2,7 +2,7 @@
   "name": "react-component-builder-toolkit",
   "displayName": "React Component Builder Toolkit",
   "description": "Quickly create React components with TypeScript",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "publisher": "cuongbuoi",
   "icon": "images/icon.png",
   "license": "MIT",
@@ -26,7 +26,7 @@
       "properties": {
         "reactComponentBuilderToolkit.componentTemplate": {
           "type": "string",
-          "default": "import { FC } from 'react';\n\nexport const {ComponentName}: FC<{ComponentName}Props> = () => {\n  return (\n    <div>{ComponentName}</div>\n  );\n};\n",
+          "default": "import { FC } from 'react';\n\ninterface {ComponentName}Props {}\n\nexport const {ComponentName}: FC<{ComponentName}Props> = () => {\n  return (\n    <div>{ComponentName}</div>\n  );\n};\n",
           "markdownDescription": "Template for the component file. Use `{ComponentName}` placeholder."
         },
         "reactComponentBuilderToolkit.indexTemplate": {
