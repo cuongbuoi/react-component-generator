@@ -80,3 +80,58 @@ Or specify templates via files (easier to edit, highlight, and format):
   "reactComponentBuilderToolkit.componentTemplate": "import React from 'react';\n\nexport const {ComponentName} = () => {\n  return (\n    <div>{ComponentName}</div>\n  );\n};\n"
 }
 ```
+
+## 🐛 Known Issues
+
+None at the moment. Please [report issues](https://github.com/cuongbuoi/react-component-builder-toolkit/issues) if you find any!
+
+## ☕ Support
+
+If you find this extension helpful and want to support its development:
+
+<div align="center">
+
+<a href="https://www.buymeacoffee.com/cuongbuoi"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a beer&emoji=🍺&slug=cuongbuoi&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff" /></a>
+
+**Your support helps me:**
+
+- 🚀 Keep improving this extension
+- 🆕 Create new features
+- 🐛 Fix bugs faster
+- 💻 Develop more useful tools
+
+</div>
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+MIT License - see the [LICENSE](LICENSE) file for details
+
+## 👨‍💻 Author
+
+**Cường Buôi**
+
+- GitHub: [@cuongbuoi](https://github.com/cuongbuoi)
+
+## 🙏 Acknowledgments
+
+Thanks to all contributors and users who provided feedback!
+
+---
+
+<div align="center">
+
+Made with ❤️ by [Cường Buôi](https://github.com/cuongbuoi)
+
+If you like this extension, please ⭐ star the repo and leave a review!
+
+</div>

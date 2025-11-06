@@ -2,7 +2,10 @@
   "name": "react-component-builder-toolkit",
   "displayName": "React Component Builder Toolkit",
   "description": "Quickly create React components with TypeScript",
-  "version": "1.0.4",
+  "version": "1.0.5",
+  "author": {
+    "name": "Cuong Buoi"
+  },
   "publisher": "cuongbuoi",
   "icon": "images/icon.png",
   "license": "MIT",
@@ -73,19 +76,20 @@
         {
           "command": "react-component-builder-toolkit.createComponent",
           "when": "explorerResourceIsFolder",
-          "group": "navigation"
+          "group": "1_modification"
         }
       ]
     }
   },
   "scripts": {
-    "vscode:prepublish": "yarn compile",
+    "merge-contributes": "ts-node src/scripts/merge-contributes.ts",
+    "vscode:prepublish": "yarn merge-contributes && yarn compile",
     "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "yarn compile && yarn lint",
+    "watch": "yarn merge-contributes && tsc -watch -p ./",
+    "pretest": "yarn merge-contributes && yarn compile && yarn lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js",
-    "package": "yarn compile && vsce package",
+    "package": "yarn merge-contributes && yarn compile && vsce package",
     "publish:vsce": "yarn package && vsce publish",
     "publish:ovsx": "yarn package && npx ovsx publish"
   },
@@ -101,6 +105,7 @@
     "glob": "^8.0.3",
     "mocha": "^10.1.0",
     "prettier": "^3.6.2",
+    "ts-node": "^10.9.2",
     "typescript": "^4.9.3"
   }
 }

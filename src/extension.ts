@@ -1,6 +1,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import * as vscode from 'vscode'
+import { DEFAULT_COMPONENT_TEMPLATE, DEFAULT_INDEX_TEMPLATE } from './constants/template'
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('React Component Builder Toolkit is now active!')
@@ -75,13 +76,9 @@ export function activate(context: vscode.ExtensionContext) {
         const indexTemplateFromFile = readTemplateFile(indexTemplatePath)
 
         const componentTemplate =
-          componentTemplateFromFile ??
-          config.get<string>('componentTemplate') ??
-          `import { FC } from 'react';\n\ninterface {ComponentName}Props {}\n\nexport const {ComponentName}: FC<{ComponentName}Props> = () => {\n  return (\n    <div>{ComponentName}</div>\n  );\n};\n`
-        const indexTemplate =
-          indexTemplateFromFile ??
-          config.get<string>('indexTemplate') ??
-          `export { {ComponentName} } from './{ComponentName}';\n`
+          componentTemplateFromFile ?? config.get<string>('componentTemplate') ?? DEFAULT_COMPONENT_TEMPLATE
+
+        const indexTemplate = indexTemplateFromFile ?? config.get<string>('indexTemplate') ?? DEFAULT_INDEX_TEMPLATE
 
         // Prepare contents by replacing placeholders
         const replaceName = (tpl: string) => tpl.replace(/\{ComponentName\}/g, componentName)
