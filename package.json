@@ -2,7 +2,7 @@
   "name": "react-component-builder-toolkit",
   "displayName": "React Component Builder Toolkit",
   "description": "Quickly create React components with TypeScript",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "author": {
     "name": "Cuong Buoi"
   },
@@ -19,8 +19,21 @@
   "categories": [
     "Other"
   ],
+  "keywords": [
+    "react",
+    "component",
+    "generator",
+    "builder",
+    "toolkit",
+    "typescript",
+    "javascript",
+    "vscode",
+    "extension"
+  ],
   "activationEvents": [
-    "onCommand:react-component-builder-toolkit.createComponent"
+    "onCommand:react-component-builder-toolkit.createComponent",
+    "onCommand:react-component-builder-toolkit.createHook",
+    "onCommand:react-component-builder-toolkit.createContext"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -62,6 +75,48 @@
           "type": "string",
           "default": "",
           "markdownDescription": "Absolute or workspace-relative path to a file whose contents will be used as the index template. If provided, this takes precedence over `indexTemplate`."
+        },
+        "reactComponentBuilderToolkit.hookTemplate": {
+          "type": "string",
+          "default": "export const {HookName} = () => {\n  return {}\n};\n",
+          "markdownDescription": "Template for the hook file. Use `{HookName}` placeholder."
+        },
+        "reactComponentBuilderToolkit.hookFileExtension": {
+          "type": "string",
+          "enum": [
+            "tsx",
+            "jsx",
+            "ts",
+            "js"
+          ],
+          "default": "ts",
+          "markdownDescription": "File extension for the generated hook file."
+        },
+        "reactComponentBuilderToolkit.hookTemplatePath": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Absolute or workspace-relative path to a file whose contents will be used as the hook template. If provided, this takes precedence over `hookTemplate`."
+        },
+        "reactComponentBuilderToolkit.contextTemplate": {
+          "type": "string",
+          "default": "import { createContext, useContext, ReactNode } from 'react';\n\ninterface {ContextName}ContextType {\n  // Add your context properties here\n}\n\nconst {ContextName}Context = createContext<{ContextName}ContextType | undefined>(undefined);\n\ninterface {ContextName}ProviderProps {\n  children: ReactNode;\n}\n\nexport const {ContextName}Provider = ({ children }: {ContextName}ProviderProps) => {\n  const value: {ContextName}ContextType = {\n    // Add your context values here\n  };\n\n  return (\n    <{ContextName}Context.Provider value={value}>\n      {children}\n    </{ContextName}Context.Provider>\n  );\n};\n\nexport const use{ContextName} = () => {\n  const context = useContext({ContextName}Context);\n  if (context === undefined) {\n    throw new Error('use{ContextName} must be used within a {ContextName}Provider');\n  }\n  return context;\n};\n",
+          "markdownDescription": "Template for the context file. Use `{ContextName}` placeholder."
+        },
+        "reactComponentBuilderToolkit.contextFileExtension": {
+          "type": "string",
+          "enum": [
+            "tsx",
+            "jsx",
+            "ts",
+            "js"
+          ],
+          "default": "tsx",
+          "markdownDescription": "File extension for the generated context file."
+        },
+        "reactComponentBuilderToolkit.contextTemplatePath": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Absolute or workspace-relative path to a file whose contents will be used as the context template. If provided, this takes precedence over `contextTemplate`."
         }
       }
     },
@@ -69,6 +124,14 @@
       {
         "command": "react-component-builder-toolkit.createComponent",
         "title": "Create React Component"
+      },
+      {
+        "command": "react-component-builder-toolkit.createHook",
+        "title": "Create React Hook"
+      },
+      {
+        "command": "react-component-builder-toolkit.createContext",
+        "title": "Create React Context"
       }
     ],
     "menus": {
@@ -77,19 +140,29 @@
           "command": "react-component-builder-toolkit.createComponent",
           "when": "explorerResourceIsFolder",
           "group": "1_modification"
+        },
+        {
+          "command": "react-component-builder-toolkit.createHook",
+          "when": "explorerResourceIsFolder",
+          "group": "1_modification"
+        },
+        {
+          "command": "react-component-builder-toolkit.createContext",
+          "when": "explorerResourceIsFolder",
+          "group": "1_modification"
         }
       ]
     }
   },
   "scripts": {
     "merge-contributes": "ts-node src/scripts/merge-contributes.ts",
-    "vscode:prepublish": "yarn merge-contributes && yarn compile",
+    "prepublish": "yarn merge-contributes && yarn compile",
     "compile": "tsc -p ./",
     "watch": "yarn merge-contributes && tsc -watch -p ./",
     "pretest": "yarn merge-contributes && yarn compile && yarn lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js",
-    "package": "yarn merge-contributes && yarn compile && vsce package",
+    "package": "yarn prepublish && vsce package",
     "publish:vsce": "yarn package && vsce publish",
     "publish:ovsx": "yarn package && npx ovsx publish"
   },
